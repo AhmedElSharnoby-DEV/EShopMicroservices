@@ -1,0 +1,12 @@
+﻿global using BuildingBlocks.CQRS;
+global using BuildingBlocks.Responses;
+global using Catalog.API.Common.DTOs;
+global using Catalog.API.Common.Exceptions;
+global using Catalog.API.Common.Validations.Abstractions;
+global using Catalog.API.Domain.Common.Abstractions;
+global using Catalog.API.Domain.Common.Models;
+global using BuildingBlocks.Resources;
+global using Catalog.API.Common.Helpers;
+global using FluentValidation;
+global using Catalog.API.Common.Abstractions;
+global using MediatR;
