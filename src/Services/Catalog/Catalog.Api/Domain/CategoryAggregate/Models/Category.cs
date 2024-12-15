@@ -1,8 +1,5 @@
-﻿using BuildingBlocks.Resources;
-using BuildingBlocks.Result;
+﻿using BuildingBlocks.Result;
 using Catalog.API.Domain.CategoryAggregate.DTOs;
-using Catalog.API.Domain.Common.Abstractions;
-using Catalog.API.Domain.Common.Models;
 using Catalog.API.Domain.ProductAggregate.Models;
 
 namespace Catalog.API.Domain.CategoryAggregate.Models
