@@ -1,3 +1,7 @@
+using Carter;
+using Marten;
+using Weasel.Core;
+
 namespace Catalog.API
 {
     public class Program
@@ -5,14 +9,23 @@ namespace Catalog.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
             // Add servies to container
+            builder.Services.AddCarter();
+            builder.Services.AddMediatR(cfg =>
+            {
+                cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+            });
+            builder.Services.AddMarten(opt =>
+            {
+                opt.Connection(builder.Configuration.GetConnectionString("Database")!);
+                opt.AutoCreateSchemaObjects = AutoCreate.CreateOrUpdate;
+            });
+
 
             var app = builder.Build();
-
-            app.MapGet("/", () => "Hello World!");
             // Configure the http request pipeline
 
+            app.MapCarter();
             app.Run();
         }
     }
