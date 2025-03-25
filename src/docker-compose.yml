@@ -1,0 +1,19 @@
+services:
+  Catalog_DB:
+    image: postgres:latest
+    container_name: catalog_db
+    ports:
+      - "5432:5432"
+    networks:
+      - catalog_network
+    volumes:
+      - catalog_volume:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=catalog
+      - POSTGRES_PASSWORD=P@ssWord@@1903
+      - POSTGRES_DB=CatalogDB
+    restart: always
+networks:
+  catalog_network:
+volumes:
+  catalog_volume:

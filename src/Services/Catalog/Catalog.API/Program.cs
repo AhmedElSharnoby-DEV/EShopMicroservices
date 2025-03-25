@@ -18,8 +18,8 @@ namespace Catalog.API
             builder.Services.AddMarten(opt =>
             {
                 opt.Connection(builder.Configuration.GetConnectionString("Database")!);
-                opt.AutoCreateSchemaObjects = AutoCreate.CreateOrUpdate;
-            });
+                opt.AutoCreateSchemaObjects = AutoCreate.All;
+            }).UseLightweightSessions();
 
 
             var app = builder.Build();
