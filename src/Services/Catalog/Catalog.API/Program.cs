@@ -1,3 +1,4 @@
+using BuildingBlocks.Behaviors;
 using Carter;
 using Marten;
 using Weasel.Core;
@@ -15,6 +16,7 @@ namespace Catalog.API
             builder.Services.AddMediatR(cfg =>
             {
                 cfg.RegisterServicesFromAssembly(assembly);
+                cfg.AddOpenRequestPreProcessor(typeof(ValidationBehavior<,>));
             });
 
             builder.Services.AddMarten(opt =>
