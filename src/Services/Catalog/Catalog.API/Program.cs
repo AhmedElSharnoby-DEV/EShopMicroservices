@@ -9,18 +9,21 @@ namespace Catalog.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
             // Add servies to container
-            builder.Services.AddCarter();
+            var assembly = typeof(Program).Assembly;
             builder.Services.AddMediatR(cfg =>
             {
-                cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+                cfg.RegisterServicesFromAssembly(assembly);
             });
+
             builder.Services.AddMarten(opt =>
             {
                 opt.Connection(builder.Configuration.GetConnectionString("Database")!);
                 opt.AutoCreateSchemaObjects = AutoCreate.All;
             }).UseLightweightSessions();
 
+            builder.Services.AddCarter();
 
             var app = builder.Build();
             // Configure the http request pipeline
