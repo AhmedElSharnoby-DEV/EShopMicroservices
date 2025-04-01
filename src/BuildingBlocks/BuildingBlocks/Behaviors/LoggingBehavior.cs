@@ -18,16 +18,16 @@ namespace BuildingBlocks.Behaviors
             _logger.LogInformation($"[Start] Excute Request From Type {typeof(TRequest).Name}" +
                 $" , With Response From Type {typeof(TResponse).Name}");
 
-            var stopWatch = new Stopwatch();
-            stopWatch.Start();
+            var timer = new Stopwatch();
+            timer.Start();
 
             var response = await next();
 
-            stopWatch.Stop();
+            timer.Stop();
 
             _logger.LogInformation($"[End] Excute Request From Type {typeof(TRequest).Name}" +
                 $" , With Response From Type {typeof(TResponse).Name}" +
-                $", Time Consumed {stopWatch.ElapsedMilliseconds}");
+                $", Time Consumed {timer.ElapsedMilliseconds}");
 
             return response;
         }
