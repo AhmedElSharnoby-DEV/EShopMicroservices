@@ -23,12 +23,12 @@ namespace BuildingBlocks.Behaviors
                 
                 var failuers = validationResult
                     .Where(x => x.Errors.Any())
-                    .SelectMany(x => x.Errors)
+                    .SelectMany(x => x.Errors.Select(x=>x.ErrorMessage))
                     .ToList();
 
                 if (failuers.Any())
                 {
-                    throw new ValidationException(failuers);
+                    throw new Exceptions.CustomExceptions.ValidationException(failuers);
                 }
             }
             return await next();

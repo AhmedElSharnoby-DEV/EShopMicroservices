@@ -8,6 +8,7 @@ namespace Catalog.API.Features.Products.GetProductByCategory
         {
             RuleFor(x => x.Category)
                 .NotNull()
+                .WithMessage("Empty Category")
                 .NotEmpty()
                 .WithMessage("Invalid Category");
         }

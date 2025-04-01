@@ -8,16 +8,19 @@ namespace Catalog.API.Features.Products.CreateProduct
         {
             RuleFor(x => x.Name)
                 .NotEmpty()
+                .WithMessage("Empty Product Name")
                 .NotNull()
                 .WithMessage("Invalid Product Name");
 
             RuleFor(x => x.Description)
                 .NotEmpty()
+                .WithMessage("Empty Product Description")
                 .NotNull()
                 .WithMessage("Invalid Product Description");
 
             RuleFor(x => x.ImageUrl)
                 .NotEmpty()
+                .WithMessage("Empty Product ImageUrl")
                 .NotNull()
                 .WithMessage("Invalid Product ImageUrl");
 
@@ -26,7 +29,6 @@ namespace Catalog.API.Features.Products.CreateProduct
                 .WithMessage("Invalid Product Price");
 
             RuleFor(x => x.Categories)
-                .NotEmpty()
                 .Must(x => x.Count > 0)
                 .WithMessage("Invalid Empty Categories");
 

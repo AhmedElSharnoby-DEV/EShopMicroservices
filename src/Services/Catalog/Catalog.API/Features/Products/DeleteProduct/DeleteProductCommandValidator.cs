@@ -8,6 +8,7 @@ namespace Catalog.API.Features.Products.DeleteProduct
         {
             RuleFor(x => x.Id)
                 .NotEmpty()
+                .WithMessage("Empty Request Id")
                 .NotNull()
                 .WithMessage("Invalid Request Id");
         }

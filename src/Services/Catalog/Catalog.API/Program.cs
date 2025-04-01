@@ -1,4 +1,5 @@
 using BuildingBlocks.Behaviors;
+using BuildingBlocks.Exceptions.Handler;
 using Carter;
 using FluentValidation;
 using Marten;
@@ -30,10 +31,13 @@ namespace Catalog.API
 
             builder.Services.AddCarter();
 
+            builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
             var app = builder.Build();
             // Configure the http request pipeline
-
             app.MapCarter();
+            app.UseExceptionHandler(opt => { });
+
             app.Run();
         }
     }
