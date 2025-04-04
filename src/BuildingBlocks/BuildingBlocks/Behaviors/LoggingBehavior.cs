@@ -8,8 +8,8 @@ namespace BuildingBlocks.Behaviors
         where TRequest : notnull , IRequest<TResponse>
         where TResponse : notnull
     {
-        private readonly ILogger _logger;
-        public LoggingBehavior(ILogger logger)
+        private readonly ILogger<LoggingBehavior<TRequest, TResponse>> _logger;
+        public LoggingBehavior(ILogger<LoggingBehavior<TRequest, TResponse>> logger)
         {
             _logger = logger;
         }
