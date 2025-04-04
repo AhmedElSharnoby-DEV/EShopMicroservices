@@ -3,6 +3,7 @@ using Catalog.API.Models;
 using Mapster;
 using MapsterMapper;
 using Marten;
+using Marten.Pagination;
 
 namespace Catalog.API.Features.Products.GetProducts
 {
@@ -15,7 +16,7 @@ namespace Catalog.API.Features.Products.GetProducts
         }
         public async Task<IEnumerable<GetProductsResult>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
         {
-            var products = await _session.Query<Product>().ToListAsync(cancellationToken);
+            var products = await _session.Query<Product>().ToPagedListAsync(request.PageNumber, request.PageSize, cancellationToken);
             return products.Adapt<IEnumerable<GetProductsResult>>() ;
         }
     }
