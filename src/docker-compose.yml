@@ -1,4 +1,18 @@
 services:
+  Catalog_Service:
+    build:
+      context: D:\EShopMicroservices\src\Services\Catalog\Catalog.API
+      dockerfile: Dockerfile
+    ports:
+      - "6000:8080"
+      - "6060:8081"
+    networks:
+      - catalog_network
+    volumes:
+      - catalog_volume:/catalog/storage
+    depends_on:
+      - Catalog_DB
+    restart: always
   Catalog_DB:
     image: postgres:latest
     container_name: catalog_db
